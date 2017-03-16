@@ -8,15 +8,6 @@ use App\ManagerData;
 
 class ProfileController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -45,7 +36,7 @@ class ProfileController extends Controller
             $phone = $managerdata->phone;
         }
 
-        return view('profile', [
+        return view('profile\profile', [
             "firstname"=>$firstname,
             'lastname'=> $lastname,
             'postcode'=> $postcode,
@@ -77,6 +68,7 @@ class ProfileController extends Controller
        $managerdata->city = $city;
        $managerdata->street = $street;
        $managerdata->phone = $phone;
+       $managerdata->user_id = Auth::id();
 
         $managerdata->save();
 

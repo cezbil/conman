@@ -8,40 +8,51 @@ use Illuminate\Http\Request;
 
 class ConcertController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(Request $request, $id)
+    {
+        if(Concert::concertCheck($id))
+        {
+            $concertRecord = Concert::where("id", $id)->first();
+
+            session(["concertName" => $concertRecord->name, "concertId" => $concertRecord->id]);
+
+            return view('concert\manageconcert', [
+                'id' => $id,
+            ]);
+        }
+
+        else
+            return redirect()->route('home');
+
+
+    }
     public function addForm()
     {
-        return view('addconcert');
+        return view('concert\addconcert');
     }
 
-    public function  editForm($id)
-    {
-        $concertsQuery = Concert::where('id', $id);
-        $concertsNum = $concertsQuery->count();
 
-        if($concertsNum == 1)
+    public function  editForm(Request $request)
+    {
+        $id = $request->session()->get('concertId');
+
+        if(Concert::concertCheck($id))
         {
+            $concertsQuery = Concert::where('id', $id);
+
             $concertRecord = $concertsQuery->first();
 
             $name = $concertRecord->name;
             $venue = $concertRecord->venue;
             $datetime = explode(" ", $concertRecord->date);
 
-            return view('editconcert', [
+            return view('concert\editconcert', [
                 'id' => $id,
                 'name' => $name,
                 'venue' => $venue,
@@ -77,6 +88,13 @@ class ConcertController extends Controller
 
     public function add(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'venue' => 'required',
+            'date' => 'required|date_format:"Y-m-d"',
+            'time' => 'required',
+        ], ['date_format' => 'The entered date was wrong!']);
+
         $user_id = Auth::id();
 
         $name = $request->input('name', '');
@@ -97,4 +115,26 @@ class ConcertController extends Controller
 
         return redirect()->route("home");
     }
+
+    public function  deleteForm(Request $request, $id)
+    {
+
+        if(Concert::concertCheck($id))
+        {
+            return view('concert\deleteconcert', [
+                'id' => $id,
+            ]);
+        }
+
+        else
+            return redirect()->route('home');
+    }
+    public function delete(Request $request)
+    {
+        $id = $request->input('id', '');
+        Concert::where('id', $id)->delete();
+        return redirect()->route('home');
+
+    }
+
 }

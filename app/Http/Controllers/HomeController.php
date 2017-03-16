@@ -29,7 +29,7 @@ class HomeController extends Controller
         $concertRecordsQuantity = $concertQuery->count();
 
 
-        return view('home', [
+        return view('home\home', [
             'concertRecords' => $concertRecords,
             'concertRecordsQuantity' => $concertRecordsQuantity
     ]);

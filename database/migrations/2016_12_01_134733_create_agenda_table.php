@@ -17,7 +17,7 @@ class CreateAgendaTable extends Migration
             $table->increments('id');
             $table->integer('concert_id')->unsigned();
             $table->string('name');
-            $table->string('todo');
+            $table->integer('todo')->unsigned();
             $table->text('description');
             $table->dateTime('date_start');
             $table->dateTime('date_finish');
