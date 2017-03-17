@@ -10,40 +10,57 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route("concertEdit") }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group">
+                            <div class="form-group"{{ $errors->has('date') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
                                     <label for="name" class="col-4 control-label">Name</label>
                                     <input id="name" type="text" class="form-control" name="name" value="{{$name}}" required>
 
 
-
-
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+                            <div class="form-group"{{ $errors->has('date') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
 
                                     <label for="venue" class="col-4 control-label">Venue</label>
                                     <input id="venue" type="text" class="form-control" name="venue" value="{{$venue}}"  required>
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            {{$venue}}
+                            @if ($errors->has('venue'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('venue') }}</strong>
+                                    </span>
+                            @endif
+                            <div class="form-group"{{ $errors->has('date') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
                                     <label for="date" class="col-4 control-label">Date</label>
                                     <input id="date" type="date" class="form-control" name="date" value="{{$date}}" required>
-                                    <!-- TODO: validation -->
+
                                 </div>
                             </div>
-                            <div class="form-group">
+                            @if ($errors->has('date'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                            @endif
+                            <div class="form-group"{{ $errors->has('date') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
                                     <label for="date" class="col-4 control-label">Time</label>
-                                    <input id="time" type="time" class="form-control" name="time" value="{{$time}}" required>
+                                    <input id="time" type="time"  class="form-control" name="time" value="{{$time}}" required>
+                                    {{$time}}
                                 </div>
                             </div>
-
+                            @if ($errors->has('time'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('time') }}</strong>
+                                    </span>
+                            @endif
 
                                     <input id="id" type="hidden" name="id"  value="{{$id}}"  >
 

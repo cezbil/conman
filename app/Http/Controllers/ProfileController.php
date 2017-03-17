@@ -48,6 +48,15 @@ class ProfileController extends Controller
 
     public function edit(Request $request)
     {
+        $this->validate($request, [
+                'firstname' => 'required|string|max:255',
+                'lastname' => 'required|string|max:255',
+                'postcode' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'street' => 'required|string|max:255',
+                'phone' => 'required|numeric|max:255',
+            ]
+            );
         $managerdata = "";
 
         $firstname = $request->input("firstname", "");

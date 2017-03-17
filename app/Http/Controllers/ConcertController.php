@@ -67,6 +67,14 @@ class ConcertController extends Controller
 
     public function edit(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'venue' => 'required|string|max:255',
+            'date' => 'required|date_format:"Y-m-d"',
+            'time' => 'required|date_format:H:i', //time will not validate without editing
+        ], ['date_format' => 'The entered :attribute was wrong!',
+        ]);
+
         $name = $request->input('name', '');
         $venue = $request->input('venue', '');
         $date = $request->input('date', '');
@@ -89,11 +97,12 @@ class ConcertController extends Controller
     public function add(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'venue' => 'required',
+            'name' => 'required|string|max:255',
+            'venue' => 'required|string|max:255',
             'date' => 'required|date_format:"Y-m-d"',
-            'time' => 'required',
-        ], ['date_format' => 'The entered date was wrong!']);
+            'time' => 'required|date_format:H:i',
+        ], ['date_format' => 'The entered :attribute was wrong!',
+            ]);
 
         $user_id = Auth::id();
 

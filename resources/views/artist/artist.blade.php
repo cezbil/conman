@@ -34,8 +34,8 @@
                                         @foreach($artistRecords as $artistRecord)
                                         <tr>
                                             <td>{{$artistRecord->name}}</td>
-                                            <td>{{$artistRecord->initial_payment}}</td>
-                                            <td>{{$artistRecord->full_payment}}</td>
+                                            <td><i class="glyphicon glyphicon-gbp"></i>{{$artistRecord->initial_payment}}</td>
+                                            <td><i class="glyphicon glyphicon-gbp"></i> {{$artistRecord->full_payment}}</td>
                                             <td>{{$artistRecord->performance_time}}</td>
 
                                             <td>

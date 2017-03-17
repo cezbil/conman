@@ -10,7 +10,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route("concertAdd") }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group">
+                            <div class="form-group"{{ $errors->has('name') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
                                     <label for="name" class="col-4 control-label">Name</label>
@@ -21,14 +21,23 @@
 
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+                            <div class="form-group"{{ $errors->has('venue') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
 
                                 <label for="venue" class="col-4 control-label">Venue</label>
                                 <input id="venue" type="text" class="form-control" name="venue"  required>
                                 </div>
                             </div>
+                            @if ($errors->has('venue'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('venue') }}</strong>
+                                    </span>
+                            @endif
 
                             <div class="form-group"{{ $errors->has('date') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
@@ -41,12 +50,18 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"{{$errors->has('time') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
                                     <label for="time" class="col-4 control-label">Time</label>
                                     <input id="time" type="time" class="form-control" name="time"  required>
                                 </div>
-                            </div> <!-- TODO: ssss -->
+
+                            </div>
+                            @if ($errors->has('time'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('time') }}</strong>
+                                    </span>
+                            @endif
 
                             <div class="form-group">
                                 <div class="col-md-4 ">

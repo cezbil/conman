@@ -44,11 +44,15 @@ die();*/
     public function add(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'initial_payment' => 'required|regex:/^\d*(\.\d{1,2})?$/',
-            'full_payment' => 'required|regex:/^\d*(\.\d{1,2})?$/',
-            'performance_time' => 'required',
-        ]);
+            'name' => 'required|string|max:255',
+            'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
+            'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
+            'performance_time' => 'required|date_format:H:i',
+        ], ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
+            'date_format' => 'The entered :attribute was wrong!'
+            ]
+        );
+
 
         // $user_id = Auth::id();
         $concert_id = $request->session()->get("concertId");

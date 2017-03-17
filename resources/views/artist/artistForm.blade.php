@@ -14,7 +14,7 @@
 
                                 <div class="col-md-6">
                                     <label for="name" class="col-4 control-label">Name</label>
-                                    <input id="name" type="text" class="form-control" name="name"  required>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name')}}"  required>
 
 
 
@@ -33,7 +33,7 @@
                                     <label for="initial_payment" class="col-4 control-label">Advance Payment</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-gbp"></span></div>
-                                        <input id="initial_payment" type="text" class="form-control" name="initial_payment" placeholder="Advance Payment" required>
+                                        <input id="initial_payment" type="text" class="form-control" name="initial_payment" placeholder="Advance Payment" value="{{ old('initial_payment')}}" required>
 
                                     </div>
                                     @if ($errors->has('initial_payment'))
@@ -41,7 +41,7 @@
                                         <strong>{{ $errors->first('initial_payment') }}</strong>
                                     </span>
                                     @endif
-                                </div> <!-- TODO: number validation, range etc. -->
+                                </div>
                             </div>
 
 
@@ -51,7 +51,7 @@
                                     <label for="full_payment" class="col-4 control-label">Full Payment</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-gbp"></span></div>
-                                        <input id="full_payment" type="text" class="form-control" name="full_payment" placeholder="Full Payment" required>
+                                        <input id="full_payment" type="text" class="form-control" name="full_payment" placeholder="Full Payment" value="{{ old('full_payment') }}" required>
 
                                     </div>
                                     @if ($errors->has('full_payment'))
@@ -59,23 +59,23 @@
                                         <strong>{{ $errors->first('full_payment') }}</strong>
                                     </span>
                                     @endif
-                                </div> <!-- TODO: number validation, range etc. -->
+                                </div>
                             </div>
 
 
                             <div class="form-group"{{ $errors->has('performance_time') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
                                     <label for="performance_time" class="col-4 control-label">Performance time</label>
-                                    <input id="performance_time" type="time" class="form-control" name="performance_time"  required>
+                                    <input id="performance_time" type="time" class="form-control" name="performance_time" value="{{ old('performance_time')}}" required>
 
                                 </div>
-                                @if ($errors->has('performance_time'))
-                                    <span class="help-block">
+
+                            </div>
+                            @if ($errors->has('performance_time'))
+                                <span class="help-block">
                                         <strong>{{ $errors->first('performance_time') }}</strong>
                                     </span>
-                                @endif
-                            </div> <!-- TODO: ssss -->
-
+                            @endif
                             <div class="form-group">
                                 <div class="col-md-4 ">
                                     <button type="submit" class="btn btn-primary">
