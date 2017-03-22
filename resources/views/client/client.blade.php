@@ -9,12 +9,12 @@
                     <div class="panel-heading">Profile Panel</div>
 
                     <div class="panel-body">
-                        <a href="{{route("artistAddForm")}}">Add artist</a>
+                        <a href="{{route("clientAddForm")}}">Add client</a>
                     </div>
 
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">List of Artists</div>
+                    <div class="panel-heading">List of clients</div>
 
                     <div class="panel-body">
                             <div class="table-responsive">
@@ -22,30 +22,36 @@
                                     <thead>
                                     <tr>
 
-                                        <th>Name</th>
-                                        <th>Initial Payment</th>
-                                        <th>Full Payment</th>
-                                        <th>Performance Time</th>
+                                        <th>Company Name</th>
+                                        <th>concert funds</th>
+                                        <th>address</th>
+                                        <th>phone</th>
+                                        <th>email</th>
+                                        <th>representative name</th>
+                                        <th>other contact</th>
                                         <th>Edit/Delete</th>
                                     </tr>
                                     </thead>
 
                                         <tbody>
-                                        @foreach($artistRecords as $artistRecord)
+                                        @foreach($clientRecords as $clientRecord)
                                         <tr>
-                                            <td>{{$artistRecord->name}}</td>
-                                            <td><i class="glyphicon glyphicon-gbp"></i>{{$artistRecord->initial_payment}}</td>
-                                            <td><i class="glyphicon glyphicon-gbp"></i> {{$artistRecord->full_payment}}</td>
-                                            <td>{{$artistRecord->performance_time}}</td>
+                                            <td>{{$clientRecord->company_name}}</td>
+                                            <td><i class="glyphicon glyphicon-gbp"></i>{{$clientRecord->concert_funds}}</td>
+                                            <td>{{$clientRecord->street}} <br>{{$clientRecord->city}} <br>{{$clientRecord->postcode}}</td>
+                                            <td>{{$clientRecord->phone}}</td>
+                                            <td>{{$clientRecord->email}}</td>
+                                            <td>{{$clientRecord->representative_name}} {{$clientRecord->representative_surname}}</td>
+                                            <td>{{$clientRecord->other_contact}}</td>
 
                                             <td>
-                                                <a href="{{ route('artistEditForm', $artistRecord->id) }}">
+                                                <a href="{{ route('clientEditForm', $clientRecord->id) }}">
                                                     <div class="btn btn-primary">
                                                         Edit
                                                     </div>
                                                 </a>
 
-                                                <a href="{{ route('artistDeleteForm', $artistRecord->id) }}">
+                                                <a href="{{ route('clientDeleteForm', $clientRecord->id) }}">
                                                     <div class="btn btn-danger">
                                                         Delete
                                                     </div>

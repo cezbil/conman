@@ -9,12 +9,12 @@
                     <div class="panel-heading">Profile Panel</div>
 
                     <div class="panel-body">
-                        <a href="{{route("artistAddForm")}}">Add artist</a>
+                        <a href="{{route("contractorAddForm")}}">Add contractor</a>
                     </div>
 
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">List of Artists</div>
+                    <div class="panel-heading">List of Contractors</div>
 
                     <div class="panel-body">
                             <div class="table-responsive">
@@ -22,30 +22,32 @@
                                     <thead>
                                     <tr>
 
-                                        <th>Name</th>
+                                        <th>Company Name</th>
                                         <th>Initial Payment</th>
                                         <th>Full Payment</th>
-                                        <th>Performance Time</th>
+                                        <th>type</th>
+                                        <th>Description</th>
                                         <th>Edit/Delete</th>
                                     </tr>
                                     </thead>
 
                                         <tbody>
-                                        @foreach($artistRecords as $artistRecord)
+                                        @foreach($contractorRecords as $contractorRecord)
                                         <tr>
-                                            <td>{{$artistRecord->name}}</td>
-                                            <td><i class="glyphicon glyphicon-gbp"></i>{{$artistRecord->initial_payment}}</td>
-                                            <td><i class="glyphicon glyphicon-gbp"></i> {{$artistRecord->full_payment}}</td>
-                                            <td>{{$artistRecord->performance_time}}</td>
+                                            <td>{{$contractorRecord->company_name}}</td>
+                                            <td><i class="glyphicon glyphicon-gbp"></i>{{$contractorRecord->initial_payment}}</td>
+                                            <td><i class="glyphicon glyphicon-gbp"></i> {{$contractorRecord->full_payment}}</td>
+                                            <td>{{$contractorRecord->type}}</td>
+                                            <td>{{$contractorRecord->description}}</td>
 
                                             <td>
-                                                <a href="{{ route('artistEditForm', $artistRecord->id) }}">
+                                                <a href="{{ route('contractorEditForm', $contractorRecord->id) }}">
                                                     <div class="btn btn-primary">
                                                         Edit
                                                     </div>
                                                 </a>
 
-                                                <a href="{{ route('artistDeleteForm', $artistRecord->id) }}">
+                                                <a href="{{ route('contractorDeleteForm', $contractorRecord->id) }}">
                                                     <div class="btn btn-danger">
                                                         Delete
                                                     </div>

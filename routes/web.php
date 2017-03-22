@@ -27,13 +27,35 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::group(['middleware' => 'right.user'], function (){
         Route::group(['prefix' => 'artist'], function () {
-            Route::get('/', 'ArtistController@panelArtist')->name("manageArtistPanel");
+            Route::get('/', 'ArtistController@panel')->name("manageArtistPanel");
             Route::post('/edit', 'ArtistController@edit')->name("artistEdit");
-            Route::get('/edit', 'ArtistController@editForm')->name("artistEditForm");
+            Route::get('/edit/{id}', 'ArtistController@editForm')->name("artistEditForm");
             Route::post('/add', 'ArtistController@add')->name("artistAdd");
             Route::get('/add', 'ArtistController@addForm')->name("artistAddForm");
             Route::get('/delete/{id}', 'ArtistController@deleteForm')->name("artistDeleteForm");
             Route::post('/delete', 'ArtistController@delete')->name("artistDelete");
+        });
+    });
+    Route::group(['middleware' => 'right.user'], function (){
+        Route::group(['prefix' => 'contractor'], function () {
+            Route::get('/', 'ContractorController@panelContractor')->name("manageContractorPanel");
+            Route::post('/edit', 'ContractorController@edit')->name("contractorEdit");
+            Route::get('/edit/{id}', 'ContractorController@editForm')->name("contractorEditForm");
+            Route::post('/add', 'ContractorController@add')->name("contractorAdd");
+            Route::get('/add', 'ContractorController@addForm')->name("contractorAddForm");
+            Route::get('/delete/{id}', 'ContractorController@deleteForm')->name("contractorDeleteForm");
+            Route::post('/delete', 'ContractorController@delete')->name("contractorDelete");
+        });
+    });
+    Route::group(['middleware' => 'right.user'], function (){
+        Route::group(['prefix' => 'client'], function () {
+            Route::get('/', 'ClientController@panelClient')->name("manageClientPanel");
+            Route::post('/edit', 'ClientController@edit')->name("clientEdit");
+            Route::get('/edit/{id}', 'ClientController@editForm')->name("clientEditForm");
+            Route::post('/add', 'ClientController@add')->name("clientAdd");
+            Route::get('/add', 'ClientController@addForm')->name("clientAddForm");
+            Route::get('/delete/{id}', 'ClientController@deleteForm')->name("clientDeleteForm");
+            Route::post('/delete', 'ClientController@delete')->name("clientDelete");
         });
     });
 

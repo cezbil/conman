@@ -10,6 +10,8 @@
                     <div class="panel-body">
                         <a href="{{route("editConcertForm")}}">Edit Concert</a><br>
                         <a href="{{route("manageArtistPanel")}}">Manage Artists</a><br>
+                        <a href="{{route("manageClientPanel")}}">Manage Clients</a><br>
+                        <a href="{{route("manageContractorPanel")}}">Manage Contractors</a><br>
 
                     </div>
 

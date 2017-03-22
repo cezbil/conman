@@ -17,12 +17,11 @@ class ArtistController extends Controller
     {
         return view('artist\artistForm');
     }
-    public function form()
-    {
-        return view('artistAdd');
-    }
+
     public function panelArtist(Request $request)
     {
+
+
         $artistQuery = Artist::where('concert_id', $request->session()->get("concertId", function () {
             return redirect()->route("home");
         }));
@@ -30,9 +29,7 @@ class ArtistController extends Controller
         $artistRecords = $artistQuery->get();
         $artistRecordsQuantity = $artistRecords->count();
 
-/*$z = $request->session()->get("concertId");
-var_dump($z);
-die();*/
+
         return view('artist\artist', [
             'artistRecords' => $artistRecords,
             'artistRecordsQuantity' => $artistRecordsQuantity,
@@ -49,12 +46,11 @@ die();*/
             'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
             'performance_time' => 'required|date_format:H:i',
         ], ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
-            'date_format' => 'The entered :attribute was wrong!'
+                'date_format' => 'The entered :attribute was wrong!'
             ]
         );
 
 
-        // $user_id = Auth::id();
         $concert_id = $request->session()->get("concertId");
         $name = $request->input('name', '');
         $initial_payment = $request->input('initial_payment', '');
@@ -64,13 +60,6 @@ die();*/
 
 
 
-        /*
-                ->name = $name;
-                ->venue = $venue;
-                $concert->performance_time= $time;
-                $concert->user_id = $user_id;*/
-
-        //   $concert->save();
         $artist->concert_id = $concert_id;
         $artist->name = $name;
         $artist->initial_payment = $initial_payment;
@@ -81,14 +70,70 @@ die();*/
 
         return redirect()->route("manageArtistPanel");
     }
-    public function editForm()
+    public function editForm(Request $request, $id)
     {
-        return view('artist');
+
+
+
+        if(Artist::artistCheck($id, $request))
+        {
+            $artistQuery = Artist::where('id', $id);
+
+            $artistRecord = $artistQuery->first();
+
+            $name = $artistRecord->name;
+            $initial_payment = $artistRecord->initial_payment;
+            $full_payment = $artistRecord->full_payment;
+            $performance_time= $artistRecord->performance_time;
+
+            return view('artist\editartist', [
+                'id' => $id,
+                'name' => $name,
+                'initial_payment' => $initial_payment,
+                'full_payment' => $full_payment,
+                'performance_time' => $performance_time,
+
+            ]);
+        }
+
+        else
+            return redirect()->route('home');
     }
 
-    public function edit()
+
+    public function edit(Request $request)
     {
-        return view('artist');
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
+            'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
+            'performance_time' => 'required|date_format:H:i', // TODO: z tym formatem nie updatuje bez zmiany
+        ], ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
+                'date_format' => 'The entered :attribute was wrong!'
+            ]
+        );
+
+
+        // $user_id = Auth::id();
+        $concert_id = $request->session()->get("concertId");
+        $name = $request->input('name', '');
+        $initial_payment = $request->input('initial_payment', '');
+        $full_payment = $request->input('full_payment', '');
+        $time = $request->input('performance_time', '');
+        $id = $request->input('id', '');
+        $artist = Artist::where('id', $id)->first();
+
+
+
+        $artist->concert_id = $concert_id;
+        $artist->name = $name;
+        $artist->initial_payment = $initial_payment;
+        $artist->full_payment = $full_payment;
+        $artist->performance_time = $time;
+
+        $artist->save();
+
+        return redirect()->route("manageArtistPanel");
     }
     public function  deleteForm(Request $request, $id)
     {

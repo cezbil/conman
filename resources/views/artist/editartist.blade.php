@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit Concert</div>
+                    <div class="panel-heading">Edit Artist</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route("concertEdit") }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route("artistEdit") }}">
                             {{ csrf_field() }}
 
                             <div class="form-group"{{ $errors->has('name') ? ' has-error' : '' }}>
@@ -24,41 +24,42 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                             @endif
-                            <div class="form-group"{{ $errors->has('venue') ? ' has-error' : '' }}>
+                            <div class="form-group"{{ $errors->has('initial_payment') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
 
-                                    <label for="venue" class="col-4 control-label">Venue</label>
-                                    <input id="venue" type="text" class="form-control" name="venue" value="{{$venue}}"  required>
+                                    <label for="initial_payment" class="col-4 control-label">initial payment</label>
+                                    <input id="initial_payment" type="text" class="form-control" name="initial_payment" value="{{$initial_payment}}"  required>
                                 </div>
                             </div>
-                            {{$venue}}
-                            @if ($errors->has('venue'))
+                            {{$initial_payment}}
+                            @if ($errors->has('initial_payment'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('venue') }}</strong>
+                                        <strong>{{ $errors->first('initial_payment') }}</strong>
                                     </span>
                             @endif
-                            <div class="form-group"{{ $errors->has('date') ? ' has-error' : '' }}>
+                            <div class="form-group"{{ $errors->has('full_payment') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
-                                    <label for="date" class="col-4 control-label">Date</label>
-                                    <input id="date" type="date" class="form-control" name="date" value="{{$date}}" required>
 
+                                    <label for="full_payment" class="col-4 control-label">Pull Payment</label>
+                                    <input id="full_payment" type="text" class="form-control" name="full_payment" value="{{$full_payment}}"  required>
                                 </div>
                             </div>
-                            @if ($errors->has('date'))
+                            {{$full_payment}}
+                            @if ($errors->has('full_payment'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('date') }}</strong>
+                                        <strong>{{ $errors->first('full_payment') }}</strong>
                                     </span>
                             @endif
-                            <div class="form-group"{{ $errors->has('time') ? ' has-error' : '' }}>
+                            <div class="form-group"{{ $errors->has('performance_time') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
-                                    <label for="time" class="col-4 control-label">Time</label>
-                                    <input id="time" step="1" type="time"  class="form-control" name="time" value="{{$time}}" required>
-                                    {{$time}}
+                                    <label for="performance_time" class="col-4 control-label">performance time</label>
+                                    <input id="performance_time" type="time"  class="form-control" name="performance_time" value="{{$performance_time}}" required>
+                                    {{$performance_time}}
                                 </div>
                             </div>
-                            @if ($errors->has('time'))
+                            @if ($errors->has('performance_time'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('time') }}</strong>
+                                        <strong>{{ $errors->first('performance_time') }}</strong>
                                     </span>
                             @endif
 
@@ -70,7 +71,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Edit
                                     </button>
-                                    <a href="{{ route('manageConcertPanel', $id) }}">
+                                    <a href="{{ route('manageArtistPanel') }}">
                                         <div class="btn btn-default">
                                             Back
                                         </div>

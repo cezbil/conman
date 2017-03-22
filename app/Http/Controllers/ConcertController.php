@@ -71,7 +71,7 @@ class ConcertController extends Controller
             'name' => 'required|string|max:255',
             'venue' => 'required|string|max:255',
             'date' => 'required|date_format:"Y-m-d"',
-            'time' => 'required|date_format:H:i', //time will not validate without editing
+            'time' => 'required|date_format:H:i', // TODO: time will not validate without editing
         ], ['date_format' => 'The entered :attribute was wrong!',
         ]);
 
