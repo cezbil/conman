@@ -39,7 +39,7 @@ class ContractorController extends Controller
     }
 
     public function add(Request $request)
-    {
+    {// TODO: dodaje sie na potege jak sie klika kilka razy
         $this->validate($request, [
             'company_name' => 'required|string|max:255',
             'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
@@ -87,28 +87,20 @@ class ContractorController extends Controller
             $contractorRecord = $contractorQuery->first();
 
             $company_name = $contractorRecord->company_name;
-            $concert_funds = $contractorRecord->concert_funds;
-            $street = $contractorRecord->street;
-            $city = $contractorRecord->city;
-            $postcode = $contractorRecord->postcode;
-            $phone = $contractorRecord->phone;
-            $email = $contractorRecord->email;
-            $representative_name = $contractorRecord->representative_name;
-            $representative_surname = $contractorRecord->representative_surname;
-            $other_contact = $contractorRecord->other_contact;
+            $initial_payment = $contractorRecord->initial_payment;
+            $full_payment = $contractorRecord->full_payment;
+            $type = $contractorRecord->type;
+            $description = $contractorRecord->description;
+
 
             return view('contractor\editcontractor', [
                 'id' => $id,
                 'company_name' => $company_name,
-                'concert_funds' => $concert_funds,
-                'street' => $street,
-                'city' => $city,
-                'postcode' => $postcode,
-                'phone' => $phone,
-                'email' => $email,
-                'representative_name' => $representative_name,
-                'representative_surname' => $representative_surname,
-                'other_contact' => $other_contact,
+                'initial_payment' => $initial_payment,
+                'full_payment' => $full_payment,
+                'type' => $type,
+                'description' => $description,
+
 
             ]);
         }
@@ -122,55 +114,43 @@ class ContractorController extends Controller
     {
         $this->validate($request, [
             'company_name' => 'required|string|max:255',
-            'concert_funds' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
-            'street' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'postcode' => 'required|string|max:255',
-            'phone' => 'numeric|required|regex:/(07)[0-9]{9}/',
-            'email' => 'email|required|string|max:255',
-            'representative_name' => 'required|string|max:255',
-            'representative_surname' => 'required|string|max:255',
-            'other_contact' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
+            'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
+            'type' => 'required|string|max:255',
+            'description' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
         ],
-            ['concert_funds.regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
-                'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX ', //TODO: jak zrobic custom rule do roznych regexow
-
-                'date_format' => 'The entered :attribute was wrong!'
-            ]
+            ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',]
         );
 
-
         $concert_id = $request->session()->get("concertId");
+
         $company_name = $request->input('company_name', '');
-        $concert_funds = $request->input('concert_funds', '');
-        $street = $request->input('street', '');
-        $city = $request->input('city', '');
-        $postcode = $request->input('postcode', '');
-        $phone = $request->input('phone', '');
-        $email = $request->input('email', '');
-        $representative_name = $request->input('representative_name', '');
-        $representative_surname = $request->input('representative_surname', '');
-        $other_contact = $request->input('other_contact', '');
+        $type = $request->input('type', '');
+        $initial_payment = $request->input('initial_payment', '');
+        $full_payment = $request->input('full_payment', '');
+        $description = $request->input('description', '');
+
+
         $id = $request->input('id', '');
 
         $contractor = Contractor::where('id', $id)->first();
 
 
 
-
+        $contractor->concert_id = $concert_id;
 
         $contractor->company_name = $company_name;
-        $contractor->concert_funds = $concert_funds;
-        $contractor->street = $street;
-        $contractor->city = $city;
-        $contractor->postcode = $postcode;
-        $contractor->phone = $phone;
-        $contractor->email = $email;
-        $contractor->representative_name = $representative_name;
-        $contractor->representative_surname = $representative_surname;
-        $contractor->other_contact = $other_contact;
+        $contractor->type = $type;
+        $contractor->initial_payment = $initial_payment;
+        $contractor->full_payment = $full_payment;
+        $contractor->description = $description;
+
 
         $contractor->save();
+
+
+
+
 
         return redirect()->route("manageContractorPanel");
     }

@@ -84,7 +84,9 @@ class ArtistController extends Controller
             $name = $artistRecord->name;
             $initial_payment = $artistRecord->initial_payment;
             $full_payment = $artistRecord->full_payment;
-            $performance_time= $artistRecord->performance_time;
+
+            $performance_time = explode(":", $artistRecord->performance_time);
+            $performance_time = $performance_time[0] . ":" . $performance_time[1];
 
             return view('artist\editartist', [
                 'id' => $id,
@@ -103,11 +105,13 @@ class ArtistController extends Controller
 
     public function edit(Request $request)
     {
+
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
             'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
-            'performance_time' => 'required|date_format:H:i', // TODO: z tym formatem nie updatuje bez zmiany
+            'performance_time' => 'required|date_format:"H:i"',
         ], ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
                 'date_format' => 'The entered :attribute was wrong!'
             ]

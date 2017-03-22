@@ -52,7 +52,7 @@
                             <div class="form-group"{{ $errors->has('time') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
                                     <label for="time" class="col-4 control-label">Time</label>
-                                    <input id="time" step="1" type="time"  class="form-control" name="time" value="{{$time}}" required>
+                                    <input id="time" type="time"  class="form-control" name="time" value="{{$time}}" required>
                                     {{$time}}
                                 </div>
                             </div>

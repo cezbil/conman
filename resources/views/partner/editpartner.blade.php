@@ -5,46 +5,28 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Add new Client</div>
+                    <div class="panel-heading">Add new Partner</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route("clientAdd") }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route("partnerEdit") }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group"{{ $errors->has('company_name') ? ' has-error' : '' }}>
+                            <div class="form-group"{{ $errors->has('name') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
-                                    <label for="company_name" class="col-4 control-label">Company name</label>
-                                    <input id="company_name" type="text" class="form-control" name="company_name" value="{{ old('company_name')}}"  required>
+                                    <label for="name" class="col-4 control-label"> name</label>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ $name}}"  required>
 
 
 
 
                                 </div>
-                                @if ($errors->has('company_name'))
+                                @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('company_name') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
 
-
-
-                            <div class="form-group"{{ $errors->has('concert_funds') ? ' has-error' : '' }}>
-                                <div class="col-md-6">
-
-                                    <label for="concert_funds" class="col-4 control-label">Concert Funds</label>
-                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-gbp"></span></div>
-                                        <input id="concert_funds" type="text" class="form-control" name="concert_funds" placeholder="Concert Funds" value="{{ old('concert_funds')}}" required>
-
-                                    </div>
-                                    @if ($errors->has('concert_funds'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('concert_funds') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
 
 
 
@@ -53,7 +35,7 @@
 
                                 <div class="col-md-6">
                                     <label for="street" class="col-4 control-label">street</label>
-                                    <input id="street" type="text" class="form-control" name="street" value="{{ old('street')}}"  required>
+                                    <input id="street" type="text" class="form-control" name="street" value="{{ $street}}"  required>
 
 
 
@@ -70,7 +52,7 @@
 
                                 <div class="col-md-6">
                                     <label for="city" class="col-4 control-label">city</label>
-                                    <input id="city" type="text" class="form-control" name="city" value="{{ old('city')}}"  required>
+                                    <input id="city" type="text" class="form-control" name="city" value="{{ $city}}"  required>
 
 
 
@@ -87,7 +69,7 @@
 
                                 <div class="col-md-6">
                                     <label for="postcode" class="col-4 control-label">postcode</label>
-                                    <input id="postcode" type="text" class="form-control" name="postcode" value="{{ old('postcode')}}"  required>
+                                    <input id="postcode" type="text" class="form-control" name="postcode" value="{{ $postcode}}"  required>
 
 
 
@@ -104,7 +86,7 @@
 
                                 <div class="col-md-6">
                                     <label for="phone" class="col-4 control-label">mobile phone</label>
-                                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone')}}"  required>
+                                    <input id="phone" type="text" class="form-control" name="phone" value="{{ $phone}}"  required>
 
 
 
@@ -124,7 +106,7 @@
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-gbp"></span></div>
 
-                                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email')}}"  required>
+                                        <input id="email" type="text" class="form-control" name="email" value="{{ $email}}"  required>
 
                                     </div>
 
@@ -137,63 +119,52 @@
                                 @endif
                             </div>
 
-                            <div class="form-group"{{ $errors->has('representative_name') ? ' has-error' : '' }}>
+                            <div class="form-group"{{ $errors->has('type') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
-                                    <label for="representative_name" class="col-4 control-label">representative_name</label>
-                                    <input id="representative_name" type="text" class="form-control" name="representative_name" value="{{ old('representative_name')}}"  required>
+                                    <label for="type" class="col-4 control-label">type</label>
+                                    <input id="type" type="text" class="form-control" name="type" value="{{ $type}}"  required>
 
 
 
 
                                 </div>
-                                @if ($errors->has('representative_name'))
+                                @if ($errors->has('type'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representative_name') }}</strong>
+                                        <strong>{{ $errors->first('type') }}</strong>
                                     </span>
                                 @endif
                             </div>
 
-                            <div class="form-group"{{ $errors->has('representative_surname') ? ' has-error' : '' }}>
+
+
+                            <div class="form-group"{{ $errors->has('description') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
-                                    <label for="representative_surname" class="col-4 control-label">representative_surname</label>
-                                    <input id="representative_surname" type="text" class="form-control" name="representative_surname" value="{{ old('representative_surname')}}"  required>
-
+                                    <label for="description" class="col-4 control-label">description</label>
+                                    <textarea id="description" type="textarea" class="form-control" name="description" value="{{ $description}}"  >
+                                    </textarea>
 
 
 
                                 </div>
-                                @if ($errors->has('representative_surname'))
+                                @if ($errors->has('description'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representative_surname') }}</strong>
+                                        <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
                             </div>
 
-                            <div class="form-group"{{ $errors->has('other_contact') ? ' has-error' : '' }}>
-
-                                <div class="col-md-6">
-                                    <label for="other_contact" class="col-4 control-label">other_contact</label>
-                                    <textarea id="other_contact" type="textarea" class="form-control" name="other_contact">{{ old('other_contact')}}</textarea>
 
 
-
-                                </div>
-                                @if ($errors->has('other_contact'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('other_contact') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
+                            <input id="id" type="hidden" name="id"  value="{{$id}}"  >
 
                             <div class="form-group">
                                 <div class="col-md-4 ">
                                     <button type="submit" class="btn btn-primary">
-                                        Add
+                                        Edit
                                     </button>
-                                    <a href="{{ route('manageClientPanel') }}">
+                                    <a href="{{ route('managePartnerPanel') }}">
                                         <div class="btn btn-default">
                                             Back
                                         </div>

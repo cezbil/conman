@@ -50,10 +50,10 @@ class ClientController extends Controller
             'email' => 'email|required|string|max:255',
             'representative_name' => 'required|string|max:255',
             'representative_surname' => 'required|string|max:255',
-            'other_contact' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'other_contact' => 'string|max:255',
         ],
             ['concert_funds.regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
-                'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX', //TODO: jak zrobic custom rule do roznych regexow
+                'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX',
 
                 'date_format' => 'The entered :attribute was wrong!'
             ]
@@ -148,10 +148,10 @@ class ClientController extends Controller
             'email' => 'email|required|string|max:255',
             'representative_name' => 'required|string|max:255',
             'representative_surname' => 'required|string|max:255',
-            'other_contact' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'other_contact' => 'string|max:255',
         ],
             ['concert_funds.regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',
-                'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX ', //TODO: jak zrobic custom rule do roznych regexow
+                'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX ',
 
                 'date_format' => 'The entered :attribute was wrong!'
             ]
@@ -176,6 +176,7 @@ class ClientController extends Controller
 
 
 
+        $client->concert_id = $concert_id;
 
         $client->company_name = $company_name;
         $client->concert_funds = $concert_funds;

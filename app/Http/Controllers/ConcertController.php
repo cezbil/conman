@@ -52,6 +52,9 @@ class ConcertController extends Controller
             $venue = $concertRecord->venue;
             $datetime = explode(" ", $concertRecord->date);
 
+            $datetime[1] = explode(":", $datetime[1]);
+            $datetime[1] = $datetime[1][0] . ":" . $datetime[1][1];
+
             return view('concert\editconcert', [
                 'id' => $id,
                 'name' => $name,
@@ -71,7 +74,7 @@ class ConcertController extends Controller
             'name' => 'required|string|max:255',
             'venue' => 'required|string|max:255',
             'date' => 'required|date_format:"Y-m-d"',
-            'time' => 'required|date_format:H:i', // TODO: time will not validate without editing
+            'time' => 'required|date_format:"H:i"', //
         ], ['date_format' => 'The entered :attribute was wrong!',
         ]);
 
@@ -100,7 +103,7 @@ class ConcertController extends Controller
             'name' => 'required|string|max:255',
             'venue' => 'required|string|max:255',
             'date' => 'required|date_format:"Y-m-d"',
-            'time' => 'required|date_format:H:i',
+            'time' => 'required|date_format:"H:i"',
         ], ['date_format' => 'The entered :attribute was wrong!',
             ]);
 

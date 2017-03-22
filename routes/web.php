@@ -17,6 +17,7 @@ Route::get('/', "WelcomeController@index");
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::group(['middleware' => 'auth'], function ()
 {
     Route::group(['prefix' => 'profile'], function ()
@@ -24,10 +25,14 @@ Route::group(['middleware' => 'auth'], function ()
         Route::get('/', 'ProfileController@form')->name("profile");
         Route::post('/edit', 'ProfileController@edit')->name("profileEdit");
     });
+        Route::group(["prefix" => "programme"], function () {
+    Route::get('/', 'ProgrammeController@index')->name("programme");
+    Route::get('/pdf', 'ProgrammeController@getPdf')->name("pdf");
 
+});
     Route::group(['middleware' => 'right.user'], function (){
         Route::group(['prefix' => 'artist'], function () {
-            Route::get('/', 'ArtistController@panel')->name("manageArtistPanel");
+            Route::get('/', 'ArtistController@panelArtist')->name("manageArtistPanel");
             Route::post('/edit', 'ArtistController@edit')->name("artistEdit");
             Route::get('/edit/{id}', 'ArtistController@editForm')->name("artistEditForm");
             Route::post('/add', 'ArtistController@add')->name("artistAdd");
@@ -47,6 +52,18 @@ Route::group(['middleware' => 'auth'], function ()
             Route::post('/delete', 'ContractorController@delete')->name("contractorDelete");
         });
     });
+
+    Route::group(['middleware' => 'right.user'], function (){
+        Route::group(['prefix' => 'partner'], function () {
+            Route::get('/', 'PartnerController@panelPartner')->name("managePartnerPanel");
+            Route::post('/edit', 'PartnerController@edit')->name("partnerEdit");
+            Route::get('/edit/{id}', 'PartnerController@editForm')->name("partnerEditForm");
+            Route::post('/add', 'PartnerController@add')->name("partnerAdd");
+            Route::get('/add', 'PartnerController@addForm')->name("partnerAddForm");
+            Route::get('/delete/{id}', 'PartnerController@deleteForm')->name("partnerDeleteForm");
+            Route::post('/delete', 'PartnerController@delete')->name("partnerDelete");
+        });
+    });
     Route::group(['middleware' => 'right.user'], function (){
         Route::group(['prefix' => 'client'], function () {
             Route::get('/', 'ClientController@panelClient')->name("manageClientPanel");
@@ -58,6 +75,18 @@ Route::group(['middleware' => 'auth'], function ()
             Route::post('/delete', 'ClientController@delete')->name("clientDelete");
         });
     });
+    Route::group(['middleware' => 'right.user'], function (){
+        Route::group(['prefix' => 'advertisement'], function () {
+            Route::get('/', 'AdvertisementController@panelAdvertisement')->name("manageAdvertisementPanel");
+            Route::post('/edit', 'AdvertisementController@edit')->name("advertisementEdit");
+            Route::get('/edit/{id}', 'AdvertisementController@editForm')->name("advertisementEditForm");
+            Route::post('/add', 'AdvertisementController@add')->name("advertisementAdd");
+            Route::get('/add', 'AdvertisementController@addForm')->name("advertisementAddForm");
+            Route::get('/delete/{id}', 'AdvertisementController@deleteForm')->name("advertisementDeleteForm");
+            Route::post('/delete', 'AdvertisementController@delete')->name("advertisementDelete");
+        });
+    });
+
 
     Route::group(['prefix' => 'concert'], function () {
         Route::group(['prefix' => 'add'], function () {

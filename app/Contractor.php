@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Contractor extends Model
 {
@@ -18,7 +19,7 @@ class Contractor extends Model
 
     public static function contractorCheck( $id, Request $request)
     {
-        $contractorQuery = contractor::where('id', $id)->where('concert_id', $request->session()->get("concertId"));
+        $contractorQuery = Contractor::where('id', $id)->where('concert_id', $request->session()->get("concertId"));
         $contractorNum = $contractorQuery->count();
 
         if ($contractorNum == 1)

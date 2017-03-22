@@ -40,7 +40,7 @@
                             <div class="form-group"{{ $errors->has('full_payment') ? ' has-error' : '' }}>
                                 <div class="col-md-6">
 
-                                    <label for="full_payment" class="col-4 control-label">Pull Payment</label>
+                                    <label for="full_payment" class="col-4 control-label">Full Payment</label>
                                     <input id="full_payment" type="text" class="form-control" name="full_payment" value="{{$full_payment}}"  required>
                                 </div>
                             </div>
