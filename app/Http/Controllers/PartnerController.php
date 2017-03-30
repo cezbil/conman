@@ -40,6 +40,17 @@ class PartnerController extends Controller
 
     public function add(Request $request)
     {
+
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to add new partner"]);
+            die();
+        }
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'street' => 'required|string|max:255',
@@ -80,8 +91,10 @@ class PartnerController extends Controller
         $partner->email = $email;
         $partner->type = $type;
         $partner->description = $description;
+        $request->session()->regenerateToken();
 
         $partner->save();
+
 
         return redirect()->route("managePartnerPanel");
     }
@@ -126,6 +139,15 @@ class PartnerController extends Controller
 
     public function edit(Request $request)
     {
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to edit partner"]);
+            die();
+        }
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'street' => 'required|string|max:255',
@@ -170,6 +192,7 @@ class PartnerController extends Controller
         $partner->description = $description;
 
         $partner->save();
+
 
         return redirect()->route("managePartnerPanel");
 

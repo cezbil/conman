@@ -21,7 +21,7 @@ class CreateArtistTable extends Migration
             $table->decimal('full_payment', 65, 2)->unsigned();
             $table->time('performance_time');
 
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
 
@@ -34,7 +34,9 @@ class CreateArtistTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExist('artist');
+
 
     }
 }

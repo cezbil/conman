@@ -15,6 +15,8 @@
                         <a href="{{route("managePartnerPanel")}}">Manage Partners</a><br>
                         <a href="{{route("manageAdvertisementPanel")}}">Manage Adverts</a><br>
                         <a href="{{route("programme")}}">Programme of the events</a><br>
+                        <a href="{{route("manageAgendaPanel")}}">managers agenda</a><br>
+                        <a href="{{route("estimate")}}">concert estimate</a><br>
 
                     </div>
 

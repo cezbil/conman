@@ -70,6 +70,16 @@ class ConcertController extends Controller
 
     public function edit(Request $request)
     {
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to edit concert"]);
+            die();
+        }
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'venue' => 'required|string|max:255',
@@ -94,11 +104,22 @@ class ConcertController extends Controller
 
         $concert->save();
 
+
         return redirect()->route('home');
     }
 
     public function add(Request $request)
     {
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to add new concert"]);
+            die();
+        }
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'venue' => 'required|string|max:255',
@@ -124,6 +145,7 @@ class ConcertController extends Controller
         $concert->user_id = $user_id;
 
         $concert->save();
+
 
         return redirect()->route("home");
     }

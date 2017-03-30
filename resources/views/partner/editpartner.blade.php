@@ -153,6 +153,11 @@
                                         <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
+                                @if ($errors->has('spam'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('spam') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
 

@@ -21,7 +21,7 @@ class CreateAgendaTable extends Migration
             $table->text('description');
             $table->dateTime('date_start');
             $table->dateTime('date_finish');
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
     }

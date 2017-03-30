@@ -76,6 +76,12 @@
                                         <strong>{{ $errors->first('performance_time') }}</strong>
                                     </span>
                             @endif
+                            @if ($errors->has('spam'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('spam') }}</strong>
+                                    </span>
+                            @endif
+
                             <div class="form-group">
                                 <div class="col-md-4 ">
                                     <button type="submit" class="btn btn-primary">

@@ -19,6 +19,18 @@ class Concert extends Model
     {
         return $this->hasMany('App\Artist');
     }
+    public function agenda()
+    {
+        return $this->hasMany('App\Agenda');
+    }
+    public function advertisement()
+    {
+        return $this->hasMany('App\Advertisement');
+    }
+    public function contractor()
+    {
+        return $this->hasMany('App\Contractor');
+    }
 
     public static function concertCheck($id)
     {
@@ -33,5 +45,16 @@ class Concert extends Model
         {
             return false;
         }
+    }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($concert) { // before delete() method call this
+            $concert->artist()->delete();
+            $concert->client()->delete();
+            // do the rest of the cleanup...
+        });
+
     }
 }

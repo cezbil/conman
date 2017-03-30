@@ -22,7 +22,7 @@ class CreateContractorTable extends Migration
             $table->string('type');
             $table->text('description');
 
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
     }

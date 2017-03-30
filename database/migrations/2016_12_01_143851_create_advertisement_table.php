@@ -21,7 +21,7 @@ class CreateAdvertisementTable extends Migration
             $table->decimal('price', 65, 2);
             $table->integer('quantity');
 
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
     }

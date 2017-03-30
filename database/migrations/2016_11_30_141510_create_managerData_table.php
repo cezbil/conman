@@ -24,7 +24,9 @@ class CreateManagerDataTable extends Migration
             $table->string("postcode");
             $table->string("phone");
 
-            $table->foreign("user_id")->references("id")->on("users");
+
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->change();
+
         });
     }
 
@@ -36,5 +38,6 @@ class CreateManagerDataTable extends Migration
     public function down()
     {
         Schema::dropIfExist("managerdata");
+
     }
 }

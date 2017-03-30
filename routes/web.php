@@ -25,9 +25,18 @@ Route::group(['middleware' => 'auth'], function ()
         Route::get('/', 'ProfileController@form')->name("profile");
         Route::post('/edit', 'ProfileController@edit')->name("profileEdit");
     });
-        Route::group(["prefix" => "programme"], function () {
+
+    Route::group(["prefix" => "programme"], function () {
     Route::get('/', 'ProgrammeController@index')->name("programme");
     Route::get('/pdf', 'ProgrammeController@getPdf')->name("pdf");
+
+});
+
+
+
+    Route::group(["prefix" => "estimate"], function () {
+    Route::get('/', 'EstimateController@index')->name("estimate");
+    Route::get('/pdf', 'ProgrammeController@getEstimatePDF')->name("estimatePdf");
 
 });
     Route::group(['middleware' => 'right.user'], function (){
@@ -39,6 +48,17 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('/add', 'ArtistController@addForm')->name("artistAddForm");
             Route::get('/delete/{id}', 'ArtistController@deleteForm')->name("artistDeleteForm");
             Route::post('/delete', 'ArtistController@delete')->name("artistDelete");
+        });
+    }); 
+    
+    Route::group(['middleware' => 'right.user'], function (){
+        Route::group(['prefix' => 'agenda'], function () {
+            Route::get('/', 'AgendaController@panelAgenda')->name("manageAgendaPanel");
+            Route::post('/add', 'AgendaController@add')->name("agendaAdd");
+            Route::get('/add', 'AgendaController@addForm')->name("agendaAddForm");
+            Route::get('/delete/{id}', 'AgendaController@deleteForm')->name("agendaDeleteForm");
+            Route::post('/delete', 'AgendaController@delete')->name("agendaDelete");
+            Route::get('/changestate/{id}', 'AgendaController@changestate')->name("changestate");
         });
     });
     Route::group(['middleware' => 'right.user'], function (){

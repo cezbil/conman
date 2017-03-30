@@ -76,6 +76,11 @@
                                         <strong>{{ $errors->first('quantity') }}</strong>
                                     </span>
                             @endif
+                            @if ($errors->has('spam'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('spam') }}</strong>
+                                    </span>
+                            @endif
 
                                     <input id="id" type="hidden" name="id"  value="{{$id}}"  >
 

@@ -21,7 +21,7 @@ class CreateTicketTable extends Migration
             $table->integer('quantity_initial')->unsigned();
             $table->integer('quantity_left')->unsigned();
 
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
     }

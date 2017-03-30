@@ -27,7 +27,7 @@ class CreateClientTable extends Migration
             $table->string('representative_surname');
             $table->text('other_contact');
 
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
 
@@ -40,6 +40,7 @@ class CreateClientTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExist('client');
     }
 }

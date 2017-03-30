@@ -48,6 +48,15 @@ class ProfileController extends Controller
 
     public function edit(Request $request)
     {
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to edit profile"]);
+            die();
+        }
         $this->validate($request, [
                 'firstname' => 'required|string|max:255',
                 'lastname' => 'required|string|max:255',
@@ -80,6 +89,7 @@ class ProfileController extends Controller
        $managerdata->user_id = Auth::id();
 
         $managerdata->save();
+
 
         return redirect()->route("profile");
     }

@@ -39,7 +39,17 @@ class ContractorController extends Controller
     }
 
     public function add(Request $request)
-    {// TODO: dodaje sie na potege jak sie klika kilka razy
+    {
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to add new contractor"]);
+            die();
+        }
+
         $this->validate($request, [
             'company_name' => 'required|string|max:255',
             'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
@@ -72,6 +82,7 @@ class ContractorController extends Controller
 
 
         $contractor->save();
+
 
         return redirect()->route("manageContractorPanel");
     }
@@ -112,6 +123,15 @@ class ContractorController extends Controller
 
     public function edit(Request $request)
     {
+        /**
+         * without this laravel would allow multiple requests to be sent
+         * simply by clicking "add/edit" button multiple times
+         * it introduces delay in adding and editing so it prevents spam
+         **/
+        if(isSpam($request, "addArtistSpam")){
+            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to edit contractor"]);
+            die();
+        }
         $this->validate($request, [
             'company_name' => 'required|string|max:255',
             'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
@@ -147,6 +167,7 @@ class ContractorController extends Controller
 
 
         $contractor->save();
+
 
 
 

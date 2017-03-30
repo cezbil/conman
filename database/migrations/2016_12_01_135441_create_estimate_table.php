@@ -18,7 +18,7 @@ class CreateEstimateTable extends Migration
             $table->integer('concert_id')->unsigned();
             $table->string('name');
             $table->integer('funds');
-            $table->foreign("concert_id")->references("id")->on("concert");
+            $table->foreign("concert_id")->references("id")->on("concert")->onDelete("cascade")->change();
 
         });
     }
