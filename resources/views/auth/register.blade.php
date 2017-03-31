@@ -59,7 +59,22 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
 
+                        <div class="g-recaptcha" data-sitekey="6LePDxsUAAAAAASeG2SOZv8NHjUjWC5waOUzoe4I"></div>
+                            </div>
+                        @if ($errors->has('g-recaptcha-response'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                        @endif
+                        @if ($errors->has('captcha'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('captcha') }}</strong>
+                                    </span>
+                        @endif
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

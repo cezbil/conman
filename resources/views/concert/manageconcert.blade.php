@@ -13,6 +13,7 @@
                         <a href="{{route("manageClientPanel")}}">Manage Clients</a><br>
                         <a href="{{route("manageContractorPanel")}}">Manage Contractors</a><br>
                         <a href="{{route("managePartnerPanel")}}">Manage Partners</a><br>
+                        <a href="{{route("manageTicketPanel")}}">Manage Tickets</a><br>
                         <a href="{{route("manageAdvertisementPanel")}}">Manage Adverts</a><br>
                         <a href="{{route("programme")}}">Programme of the events</a><br>
                         <a href="{{route("manageAgendaPanel")}}">managers agenda</a><br>

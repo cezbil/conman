@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::group(["prefix" => "estimate"], function () {
     Route::get('/', 'EstimateController@index')->name("estimate");
-    Route::get('/pdf', 'ProgrammeController@getEstimatePDF')->name("estimatePdf");
+    Route::get('/pdf', 'EstimateController@getPdf')->name("estimatePdf");
 
 });
     Route::group(['middleware' => 'right.user'], function (){
@@ -104,6 +104,17 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('/add', 'AdvertisementController@addForm')->name("advertisementAddForm");
             Route::get('/delete/{id}', 'AdvertisementController@deleteForm')->name("advertisementDeleteForm");
             Route::post('/delete', 'AdvertisementController@delete')->name("advertisementDelete");
+        });
+    });
+    Route::group(['middleware' => 'right.user'], function (){
+        Route::group(['prefix' => 'ticket'], function () {
+            Route::get('/', 'TicketController@panelTicket')->name("manageTicketPanel");
+            Route::post('/edit', 'TicketController@edit')->name("ticketEdit");
+            Route::get('/edit/{id}', 'TicketController@editForm')->name("ticketEditForm");
+            Route::post('/add', 'TicketController@add')->name("ticketAdd");
+            Route::get('/add', 'TicketController@addForm')->name("ticketAddForm");
+            Route::get('/delete/{id}', 'TicketController@deleteForm')->name("ticketDeleteForm");
+            Route::post('/delete', 'TicketController@delete')->name("ticketDelete");
         });
     });
 

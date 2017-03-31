@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Input;
+use ReCaptcha\ReCaptcha;
 
 class RegisterController extends Controller
 {
@@ -47,10 +49,30 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $respone = Input::get('g-recaptcha-response');
+        $rempoteip = $_SERVER['REMOTE_ADDR'];
+        $secret = '6LePDxsUAAAAAPUj6N-PDZmL1Oyt6iJrA7KoAVbk';
+
+        $recaptcha = new ReCaptcha($secret);
+        $resp = $recaptcha->verify($respone);
+
+        if($resp->isSuccess()) {
+            $data['captcha'] = 1;
+        }
+        else {
+            $data['captcha'] = 0;
+        }
+
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'g-recaptcha-response' => 'required',
+            'captcha' => 'required|min:1',
+        ],
+        [
+            'g-recaptcha-response.required' => 'Captcha is required',
+            'captcha.min' => 'Bad captcha! Buahhahahaha!',
         ]);
     }
 
