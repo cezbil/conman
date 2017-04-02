@@ -48,22 +48,14 @@ class ProfileController extends Controller
 
     public function edit(Request $request)
     {
-        /**
-         * without this laravel would allow multiple requests to be sent
-         * simply by clicking "add/edit" button multiple times
-         * it introduces delay in adding and editing so it prevents spam
-         **/
-        if(isSpam($request, "addArtistSpam")){
-            return redirect()->back()->withErrors(["spam" => "you will have to wait 10s to edit profile"]);
-            die();
-        }
+
         $this->validate($request, [
                 'firstname' => 'required|string|max:255',
                 'lastname' => 'required|string|max:255',
                 'postcode' => 'required|string|max:255',
                 'city' => 'required|string|max:255',
                 'street' => 'required|string|max:255',
-                'phone' => 'required|numeric|max:255',
+                'phone' => 'required|numeric',
             ]
             );
         $managerdata = "";
@@ -75,10 +67,12 @@ class ProfileController extends Controller
         $street = $request->input("street", "");
         $phone = $request->input("phone", "");
 
-        if(ManagerData::where("user_id", Auth::id())->count() == 0)
+        if(ManagerData::where("user_id", Auth::id())->count() == 0) {
             $managerdata = new ManagerData;
-        elseif(ManagerData::where("user_id", Auth::id())->count() > 0)
+        }
+        elseif(ManagerData::where("user_id", Auth::id())->count() > 0) {
             $managerdata = ManagerData::where("user_id", Auth::id())->first();
+        }
 
         $managerdata->firstname = $firstname;
        $managerdata->lastname = $lastname;

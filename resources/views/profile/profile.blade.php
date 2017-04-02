@@ -37,7 +37,9 @@
 
                                 </div>
                             </div>
-
+                            @foreach ($errors->all() as $error)
+    {{$error}}
+    @endforeach
 
 
                               <div class="form-group">
