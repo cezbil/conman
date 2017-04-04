@@ -26,7 +26,6 @@
                                         <th>Name</th>
                                         <th>Venue</th>
                                         <th>date</th>
-                                        <th>Client</th>
                                         <th>Edit/Delete</th>
                                     </tr>
                                     </thead>
@@ -38,8 +37,7 @@
                                             <td>{{$concertRecord->venue}}</td>
                                             <td>{{$concertRecord->date}}</td>
 
-                                            <td>
-                                            </td>
+
                                             <td>
                                                 <a href="{{ route('manageConcertPanel', $concertRecord->id) }}">
                                                     <div class="btn btn-primary">

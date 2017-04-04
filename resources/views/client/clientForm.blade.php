@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     <label for="email" class="col-4 control-label">email</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-gbp"></span></div>
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
 
                                         <input id="email" type="text" class="form-control" name="email" value="{{ old('email')}}"  required>
 
@@ -140,7 +140,7 @@
                             <div class="form-group"{{ $errors->has('representative_name') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
-                                    <label for="representative_name" class="col-4 control-label">representative_name</label>
+                                    <label for="representative_name" class="col-4 control-label">representative name</label>
                                     <input id="representative_name" type="text" class="form-control" name="representative_name" value="{{ old('representative_name')}}"  required>
 
 
@@ -157,7 +157,7 @@
                             <div class="form-group"{{ $errors->has('representative_surname') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
-                                    <label for="representative_surname" class="col-4 control-label">representative_surname</label>
+                                    <label for="representative_surname" class="col-4 control-label">representative surname</label>
                                     <input id="representative_surname" type="text" class="form-control" name="representative_surname" value="{{ old('representative_surname')}}"  required>
 
 
@@ -174,7 +174,7 @@
                             <div class="form-group"{{ $errors->has('other_contact') ? ' has-error' : '' }}>
 
                                 <div class="col-md-6">
-                                    <label for="other_contact" class="col-4 control-label">other_contact</label>
+                                    <label for="other_contact" class="col-4 control-label">other contact</label>
                                     <textarea id="other_contact" type="textarea" class="form-control" name="other_contact">{{ old('other_contact')}}</textarea>
 
 

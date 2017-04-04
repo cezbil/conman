@@ -56,7 +56,7 @@ class ContractorController extends Controller
             'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
             'type' => 'required|string|max:255',
 
-            'description' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'description' => 'string|max:255',
         ],
             ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',]
         );
@@ -137,7 +137,7 @@ class ContractorController extends Controller
             'initial_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
             'full_payment' => 'numeric|required|regex:/^\d*(\.\d{1,2})?$/|min:0|max:1000000000',
             'type' => 'required|string|max:255',
-            'description' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'description' => 'string|max:255',
         ],
             ['regex'  => 'The :attribute is currency therefore has to be formatted : x.xx or x.x or x ',]
         );

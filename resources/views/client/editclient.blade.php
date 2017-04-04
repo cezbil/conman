@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     <label for="email" class="col-4 control-label">email</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-gbp"></span></div>
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
 
                                         <input id="email" type="text" class="form-control" name="email" value="{{$email}}"  required>
 

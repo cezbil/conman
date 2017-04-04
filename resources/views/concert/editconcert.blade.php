@@ -31,7 +31,6 @@
                                     <input id="venue" type="text" class="form-control" name="venue" value="{{$venue}}"  required>
                                 </div>
                             </div>
-                            {{$venue}}
                             @if ($errors->has('venue'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('venue') }}</strong>
@@ -53,7 +52,6 @@
                                 <div class="col-md-6">
                                     <label for="time" class="col-4 control-label">Time</label>
                                     <input id="time" type="time"  class="form-control" name="time" value="{{$time}}" required>
-                                    {{$time}}
                                 </div>
                             </div>
                             @if ($errors->has('time'))

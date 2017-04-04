@@ -31,7 +31,6 @@
                                     <input id="initial_payment" type="text" class="form-control" name="initial_payment" value="{{$initial_payment}}"  required>
                                 </div>
                             </div>
-                            {{$initial_payment}}
                             @if ($errors->has('initial_payment'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('initial_payment') }}</strong>
@@ -44,7 +43,6 @@
                                     <input id="full_payment" type="text" class="form-control" name="full_payment" value="{{$full_payment}}"  required>
                                 </div>
                             </div>
-                            {{$full_payment}}
                             @if ($errors->has('full_payment'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('full_payment') }}</strong>
@@ -54,7 +52,6 @@
                                 <div class="col-md-6">
                                     <label for="performance_time" class="col-4 control-label">performance time</label>
                                     <input id="performance_time" type="time"  class="form-control" name="performance_time" value="{{$performance_time}}" required>
-                                    {{$performance_time}}
                                 </div>
                             </div>
                             @if ($errors->has('performance_time'))

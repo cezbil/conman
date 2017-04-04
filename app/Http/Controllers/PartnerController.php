@@ -59,9 +59,9 @@ class PartnerController extends Controller
             'phone' => 'numeric|required|regex:/(07)[0-9]{9}/',
             'email' => 'email|required|string|max:255',
             'type' => 'required|string|max:255',
-            'description' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'description' => 'string|max:255',
         ],
-            [  'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX', //TODO: jak zrobic custom rule do roznych regexow
+            [  'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX',
 
             ]
         );
@@ -156,10 +156,9 @@ class PartnerController extends Controller
             'phone' => 'numeric|required|regex:/(07)[0-9]{9}/',
             'email' => 'email|required|string|max:255',
             'type' => 'required|string|max:255',
-            'description' => 'string|max:255', // TODO: text? string? sprawdzic baze danych validacje
+            'description' => 'string|max:255',
         ],
-            [  'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX', //TODO: jak zrobic custom rule do roznych regexow
-
+            [  'phone.regex'  => 'This field expects a phone number, has to be formatted : 07X XXX XX XXX',
             ]
         );
 

@@ -20,21 +20,18 @@
                         <div class="caption">
                         <p>Manage your gigs, manage gigs for your clients, we've got all tha tools you need!</p>
                         </div>
-                        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                     </div>
                     <div class="col-md-4">
                         <h2>Make events stand out!</h2>
                         <div class="caption">
                         <p>Get your concert organised with no hassle, make it stand out  </p>
                         </div>
-                            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                     </div>
                     <div class="col-md-4">
                         <h2>Increase productivity!</h2>
                         <div class="caption">
                         <p>Create alerts, estimates and todo lists, no more forgetting about tasks ahead!</p>
                         </div>
-                        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                     </div>
                 </div>
             </div>

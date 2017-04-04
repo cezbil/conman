@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Profile Panel</div>
+                    <div class="panel-heading">Agenda</div>
 
                     <div class="panel-body">
-                        <a href="{{route("agendaAddForm")}}">Add agenda</a>
+                        <a href="{{route("agendaAddForm")}}">Add new task</a>
                     </div>
 
                 </div>
@@ -38,20 +38,20 @@
                                         <td>{{$agendaRecord->name}}</td>
                                         <td>
                                         @if($agendaRecord->todo == $INPROG)
-                                            <a href="/">
+                                            <a href="#">
                                                 <div class="btn btn-warning">
                                                     In progress
                                                 </div>
                                             </a>
                                         @elseif($agendaRecord->todo == $DONE)
-                                            <a href="/">
+                                            <a href="#">
                                                 <div class="btn btn-success">
                                                     Finished
                                                 </div>
                                             </a>
                                         @elseif($agendaRecord->todo == $TODO)
 
-                                                <a href="/">
+                                                <a href="#">
                                                     <div class="btn btn-danger">
                                                         Not started
                                                     </div>
